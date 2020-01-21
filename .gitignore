@@ -1,0 +1,15 @@
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
+node_modules
+
+# Debug log from npm
+npm-debug.log
+
+# OSX hidden files
+.DS_Store
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
