@@ -62,3 +62,19 @@ test('compiling android goes as expected', () => {
     expect(functions.compileJavaCode).toThrow(/JDK/);
 });
 
+// Working with async data
+
+// // Promise
+// test('fetchUser should return a user with the name of Leanne Graham', () => {
+//   expect.assertions(1);
+//   return functions.fetchUser().then(data => {
+//     expect(data.name).toEqual('Leanne Graham');
+//   });
+// });
+
+// Async Await
+test('fetchUser should return a user with the name of Leanne Graham', async () => {
+    expect.assertions(1);
+    const data = await functions.fetchUser();
+    expect(data.name).toEqual('Leanne Graham');
+});
