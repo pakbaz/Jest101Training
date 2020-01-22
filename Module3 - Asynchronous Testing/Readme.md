@@ -4,7 +4,8 @@
 
 * Connect and retieve data from API
 * Perform asynchronous testing
-* Setup and teardown for multi-stage testing
+* Setup and teardown for scoped testing
+* Isolating tests
 
 ## Requirements
 
