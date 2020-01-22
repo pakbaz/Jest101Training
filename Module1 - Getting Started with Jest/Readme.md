@@ -17,8 +17,8 @@
 2. Open a console or terminal. Create an empty directory
 
     ```console
-    mkdir jestHelloWorld
-    cd .\jestHelloWorld\
+    mkdir src
+    cd .\src\
     ```
 
 3. Cteate a local folder and initialize npm

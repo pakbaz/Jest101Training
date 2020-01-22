@@ -12,121 +12,83 @@
 
 ## Instruction
 
-1. Make sure you have node and vscode installed and environment path is setup correctly
-2. Open a console or terminal. Create an empty directory
+1. We will continue from module 1 and add to those function and function.test js files. For Continous running of our test we can open integrated terminal in vscode and run following command:
 
     ```console
-    mkdir jestHelloWorld
-    cd .\jestHelloWorld\
+    npm test -- --watch
     ```
 
-3. Cteate a local folder and initialize npm
+    > -- will escape and pass --watch as parameter to the command defined in test which will eventually run **jest --watch**
 
-    ```console
-    npm init -y
-    ```
-
-    > **-y** is for accepting all default values.
-
-4. Open using VSCode
-
-    ```console
-    code .
-    ```
-  
-    You should see package.json which is the node.js configuration
-
-5. Install and configure Jest
-
-    ```console
-    npm i -D jest
-    ```
-
-    >**-D** is short for --save-dev  
-    >**i** is short for install
-
-    Now Change test script in package.config to "jest"
-
-    ```json
-    ...
-    "scripts": {
-        "test": "jest"
-    },
-    ...
-    ```
-
-6. Create a function for simple logic to test
-
-    Create new function.js file in the folder to write some logic to test
-
-    ```javascript
-    const functions = {
-        add: function(num1,num2){
-            return num1 + num2;
-        }
-    }
-    ```
-
-    Notice for add function, there is a shorter/cleaner/simpler way using arrow functions that was introduced in ES6:
-
-    ```javascript
-    const functions = {
-        add: (num1, num2) => num1 + num2
-    }
-    ```
-
-    Make sure export the module:
-
-    ```javascript
-    module.exports = functions;
-    ```
-
-7. Write unit test for the function we just wrote
-
-    Create new function.test.js file in the same folder to write the test for function.js
-    > convention is to append *.test* for **jest** just like *.spec* for **jasmine**
-
-    Reference our functions in the test file using:
-
-    ```javascript
-    const functions = require('/functions');
-    ```
-
-    and write out unit test:
-
-    ```javascript
-    test('Add 2 + 2 equals 4', () => {
-        expect(functions.add(2,2)).toBe(4);
-    });
-    ```
-
-    Run our test using:
-
-    ```console
-    npm test
-    ```
-
-    We see that the test runner finds our test and it passes.
-
-8. Now let's write another test for multiplication using TDD approach:
-
-    ```javascript
-    test('Multiply 2 * 4 equals 8', () => {
-        expect(functions.multiply(2,4)).toBe(8);
-    });
-    ```
-
-    Now running test again will fail because won't have function yet. so we write our multiply function next. (we can intentionally write a bad one to test how it fails again)
-
-    Eventually our function.js should look like this:
+2. Lets add more functions to our function.js file:
 
     ```javascript
     const functions = {
         add: (num1, num2) => num1 + num2 ,
-        multiply: (num1, num2) => num1 * num2
+        multiply: (num1, num2) => num1 * num2,
+        isNull: () => null,
+        checkValue: x => x,
+        createUser: () => {
+            //returns object not primitive value
+            return { firstName: 'Sepehr', lastName: 'Pakbaz' };
+        },
     }
 
     module.exports = functions;
     ```
 
-    if we run the test again it will pass
+    Now lets write the unit test for each od these added functions
+
+3. First thing we can check is **"not"** modifier using fluent api. for example if we want to have another unit test for multiply function for what we don't expect it to be we can add following method:
+
+    ```javascript
+    test('Multiply 2 * 4 does not equal 9', () => {
+        expect(functions.multiply(2,4)).not.toBe(9);
+    });
+    ```
+
+4. To Check for null there is an assertion method called *toBeNull()* Lets write the test for isNull Function:
+
+    ```javascript
+    // toBeNull
+    test('isNull will be Null', () => {
+        expect(functions.isNull()).toBeNull();
+    });
+    ```
+
+5. Falsy value can be also evaluated similarly:
+
+    ```javascript
+    test('checkValue of undefined will be falsy', () => {
+        expect(functions.checkValue(undefined)).toBeFalsy();
+    });
+    ```
+
+6. For more complex types aka Object types or reference types *toBe()* method will not work. We can Try:
+
+    ```javascript
+    //reference type vs. value type
+    test('createUser should return default user', () => {
+        expect(functions.createUser()).toBe({
+        firstName: 'Sepehr',
+        lastName: 'Pakbaz'
+        });
+    });
+    ```
+
+    If we have setup jest in watch mode immediately after saving we get an error running the test suite and test fails with an error Object equality. it even suggests what we should do to fix it:
+    > If it should pass with deep equality, replace "toBe" with "toStrictEqual"
+
+    To fix this we should either replace toBe() function with *toEqual()* or as suggested *toStrictEqual()* for good measures. Therefore it will be:
+
+    ```javascript
+    //reference type vs. value type
+    test('createUser should return default user', () => {
+        expect(functions.createUser()).toStrictEqual({
+        firstName: 'Sepehr',
+        lastName: 'Pakbaz'
+        });
+    });
+    ```
+
+7. 
