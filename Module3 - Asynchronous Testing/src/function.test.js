@@ -29,6 +29,22 @@ test('createUser should return default user', () => {
     });
 });
 
+describe('scoped described test sets', () => {
+    beforeAll(() => console.log('beforeAll'));
+    afterAll(() => console.log('afterAll'));
+    beforeEach(() => console.log('beforeEach'));
+    afterEach(() => console.log('afterEach'));
+    test('log test', () => console.log('test1'));
+    test('trivial bool check', () => {
+        console.log('test2')
+        expect(true).toBe(true);
+    });
+    // //running this test will make other tests to be skipped
+    // test.only('isolated test',() =>{
+    //     console.log('isolated test')
+    //     expect(true).toBe(true);
+    // });
+});
 
 // Less than and greater than
 test('Should be under 1600', () => {

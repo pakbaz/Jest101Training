@@ -62,6 +62,35 @@
 
     > you might be familiar with `async` and `await` keyword if you have experience with programming languages like **C#** and it works very similarly here.
 
+5. Next thing is to prepare for the test or setup and teardown before and after of each or all tests. `beforeAll` , `afterAll` , `beforeEach` and `afterEach` can be very useful for things like setting up mock objects for the test suite or copy or clean some temporary data for running the tests. Additionally, we can scope and group the tests inside each suite using `describe` similar to jasmine framework. `describe` can exist next to other tests, can be nested and is very useful for grouping as jest executes all describe handlers in a test file before it executes any of the actual tests. This is another reason to do setup and teardown inside **before** and **after** handlers rather than inside the describe blocks. Once the describe blocks are complete, by default Jest runs all the tests serially in the order they were encountered in the collection phase, waiting for each to finish and be tidied up before moving on.
+
+    ```javascript
+    describe('scoped described test sets', () => {
+        beforeAll(() => console.log('beforeAll'));
+        afterAll(() => console.log('afterAll'));
+        beforeEach(() => console.log('beforeEach'));
+        afterEach(() => console.log('afterEach'));
+        test('log test', () => console.log('test1'));
+        test('trivial bool check', () => {
+            console.log('test2')
+            expect(true).toBe(true);
+        });
+    });
+    ```
+
+    > for more example and nested scope execution order refer to offical documentation (setup and teardown link in references)
+
+6. If for whatever reason a test is failing and you want to isolate a test, one of the first things to check should be whether the test is failing when it's the only test that runs. To run only one test with Jest, temporarily change that test command to a test.only:
+
+    ```javascript
+    test.only('isolated test',() =>{
+        console.log('isolated test')
+        expect(true).toBe(true);
+    });
+    ```
+
+    > note that using `.only` will not bypass before and after tests for the scope it belongs to but it will make all other tests from the same scope or other scopes in the same suite to be skipped 
+
 ### Reference
 
 * [Jest Asynchronous Code](https://jestjs.io/docs/en/asynchronous)
