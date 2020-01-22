@@ -4,7 +4,7 @@
 
 * Explore assertion library of Jest
 * Regular expression Test
-* Complex buisness logic test
+* Exception handling
 
 ## Requirements
 
@@ -91,4 +91,62 @@
     });
     ```
 
-7. 
+7. For values comparison there are many methods that can be used from assetion library. for example we can add something like this:
+
+    ```javascript
+    // Less than and greater than
+    test('Should be under 1600', () => {
+        const load1 = 800;
+        const load2 = 800;
+        expect(load1 + load2).toBeLessThanOrEqual(1600);
+    });
+    ```
+
+8. For regular expression we can match part of a string or whole string with a pattern or characters and for that we use *"toMatch()"* method, we can also combine **"not"** modifier with it:
+
+    ```javascript
+    test('there is no I in team', () => {
+        expect('team').not.toMatch(/I/);
+    });
+
+    test('but there is a "stop" in Christoph', () => {
+        expect('Christoph').toMatch(/stop/);
+    });
+    ```
+
+9. For arrays, we can use *"toContain()"* method for checking a member:
+
+    ```javascript
+    // Arrays
+    test('Admin should be in usernames', () => {
+        usernames = ['john', 'karen', 'admin'];
+        expect(usernames).toContain('admin');
+    });
+    ```
+
+10. For handling exception let's create another method in our function.js called *compileJavaCode()* :
+
+    ```javascript
+    compileJavaCode: () => {
+        throw new Error('you are using the wrong JDK');
+    }
+    ```
+
+for testing this function let's create a multi assertion unit test as below in function.test.js
+
+```javascript
+//exception handling
+test('compiling android goes as expected', () => {
+    expect(functions.compileJavaCode).toThrow();
+    expect(functions.compileJavaCode).toThrow(Error);
+  
+    // You can also use the exact error message or a regexp
+    expect(functions.compileJavaCode).toThrow('you are using the wrong JDK');
+    expect(functions.compileJavaCode).toThrow(/JDK/);
+});
+```
+
+### Reference
+
+* [Jest Matchers Documentation](https://jestjs.io/docs/en/using-matchers.html)
+  

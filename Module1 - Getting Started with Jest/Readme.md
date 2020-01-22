@@ -131,3 +131,7 @@
     ```
 
     if we run the test again it will pass
+
+### Reference
+
+* [Jest Getting Started Documentation](https://jestjs.io/docs/en/getting-started)
