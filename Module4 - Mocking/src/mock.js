@@ -1,8 +1,15 @@
 import axios from 'axios';
 
-const mocks = { 
-    greetWorld: (greettingFn) => greettingFn('world'),
-    getPostById: async (postId) => {
+export default class Mocks {
+    constructor(){
+        console.log("Mocks class inititialized");
+    } 
+
+    greetWorld(greettingFn) {
+        return greettingFn('world');
+    }
+
+    async getPostById(postId)  {
         const response = 
             await axios.get("https://jsonplaceholder.typicode.com/posts",
             {
@@ -13,8 +20,9 @@ const mocks = {
             });
 
         return response.data;
-    },
-    getPostsByUserId: async (userId) => {
+    }
+    
+    async getPostsByUserId(userId) {
         const response = 
             await axios.get("https://jsonplaceholder.typicode.com/posts",
             {
@@ -27,5 +35,3 @@ const mocks = {
         return response.data;
     }
 }
-
-export default mocks;

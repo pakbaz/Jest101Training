@@ -1,4 +1,4 @@
-import mocks from './mock';
+import Mocks from './mock';
 import axios from 'axios';
 
 
@@ -15,10 +15,11 @@ describe('Testing functions', () => {
   //stub example
   test('greetWorld calls the greeting function properly', () => {
     //Arrange
+    const m = new Mocks();
     const greetImplementation = name => `Hello, ${name}!`;
     const mockFn = jest.fn(greetImplementation);
     //Act
-    const value = mocks.greetWorld(mockFn);
+    const value = m.greetWorld(mockFn);
     //Assert
     expect(mockFn).toHaveBeenCalled();
     expect(mockFn).toHaveBeenCalledTimes(1);
@@ -32,8 +33,9 @@ describe('Testing functions', () => {
   //Calls real API to fetch first post
   test("getPostById should return post with the id of 1 when 1 is passed - real API", async () => {
     //Arrange
+    const m = new Mocks();
     //Act
-    const post = await mocks.getPostById(1);
+    const post = await m.getPostById(1);
     //Assert
     expect.assertions(3);
     expect(post).not.toBeNull();
@@ -44,11 +46,12 @@ describe('Testing functions', () => {
   //Uses Spy to double axios very first post
   test("getPostById should return post with the id of 1 when 1 is passed - Spy", async () => {
     //Arrange
+    const m = new Mocks();
     axiosGetSpy = jest.spyOn(axios, 'get')
       .mockImplementation(() => Promise.resolve({data: mockPost}));
     
     //Act
-    const post = await mocks.getPostById(1);
+    const post = await m.getPostById(1);
 
     //Assert
     expect.assertions(3);
