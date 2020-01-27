@@ -63,6 +63,9 @@
 
     > you might be familiar with `async` and `await` keyword if you have experience with programming languages like **C#** and it works very similarly here.
 
+    **Important:**
+    >It is very important to know in unit testing we shouldn't test external dependencies or third party code which is what we do here. This is for learning purposes but in next module we will learn how to Mock these external dependencies and instead of testing backend API, network stack and third party library axios we should only test logic in our function which is handling and transforming data coming from API and retrieved by third party library axios. 
+
 5. Next thing is to prepare for the test or setup and teardown before and after of each or all tests. `beforeAll` , `afterAll` , `beforeEach` and `afterEach` can be very useful for things like setting up mock objects for the test suite or copy or clean some temporary data for running the tests. Additionally, we can scope and group the tests inside each suite using `describe` similar to jasmine framework. `describe` can exist next to other tests, can be nested and is very useful for grouping as jest executes all describe handlers in a test file before it executes any of the actual tests. This is another reason to do setup and teardown inside **before** and **after** handlers rather than inside the describe blocks. Once the describe blocks are complete, by default Jest runs all the tests serially in the order they were encountered in the collection phase, waiting for each to finish and be tidied up before moving on.
 
     ```javascript

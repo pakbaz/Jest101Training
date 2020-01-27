@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const functions = {
     add: (num1, num2) => num1 + num2 ,
@@ -12,11 +12,10 @@ const functions = {
     compileJavaCode: () => {
         throw new Error('you are using the wrong JDK');
     },
-  fetchUser: () =>
-    axios
-      .get('https://jsonplaceholder.typicode.com/users/1')
+  fetchUser: (id) =>
+    axios.get('https://jsonplaceholder.typicode.com/users/' + id)
       .then(res => res.data)
       .catch(err => 'error')
 }
 
-module.exports = functions;
+export default functions;

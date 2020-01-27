@@ -132,6 +132,30 @@
 
     if we run the test again it will pass
 
+9. **Optional:** If you want to use ES6 syntax and modules, you must install `Babel` library. you need to install babel by running:
+
+    ```console
+    npm i -D @babel/core @babel/preset-env @babel/register
+    ```
+
+    Then you need to configure babel by creating babel.config.js file:
+
+    ```javascript
+    // babel.config.js
+    module.exports = {
+        presets: [
+        [
+            '@babel/preset-env',
+            {
+            targets: {
+                node: 'current',
+            },
+            },
+        ],
+        ],
+    };
+    ```
+
 ### Reference
 
 * [Jest Getting Started Documentation](https://jestjs.io/docs/en/getting-started)
