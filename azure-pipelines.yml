@@ -18,5 +18,5 @@ steps:
 - script: |
     cd Module2\ -\ Exploring\ Jest\ Assertion\ Library/src/
     npm install
-    npm test -- --ci -- --reporters=jest-junit -- --reporters=default
+    npm test -- --ci
   displayName: 'npm install and build'
