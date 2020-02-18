@@ -20,7 +20,7 @@
     }
 
     //stub example
-    test('greetWorld should call the greeting function properly', () => {
+    it('greetWorld should call the greeting function properly', () => {
         //Arrange
         const greetImplementation = name => `Hello, ${name}!`;
         const mockFn = jest.fn(greetImplementation);

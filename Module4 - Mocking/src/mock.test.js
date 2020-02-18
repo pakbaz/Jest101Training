@@ -13,7 +13,7 @@ describe('Testing functions', () => {
       }
     ];
   //stub example
-  test('greetWorld calls the greeting function properly', () => {
+  it('greetWorld calls the greeting function properly', () => {
     //Arrange
     const m = new Mocks();
     const greetImplementation = name => `Hello, ${name}!`;
@@ -31,7 +31,7 @@ describe('Testing functions', () => {
       axiosGetSpy.mockRestore();
   });
   //Calls real API to fetch first post
-  test("getPostById should return post with the id of 1 when 1 is passed - real API", async () => {
+  it("getPostById should return post with the id of 1 when 1 is passed - real API", async () => {
     //Arrange
     const m = new Mocks();
     //Act
@@ -44,7 +44,7 @@ describe('Testing functions', () => {
   });
   
   //Uses Spy to double axios very first post
-  test("getPostById should return post with the id of 1 when 1 is passed - Spy", async () => {
+  it("getPostById should return post with the id of 1 when 1 is passed - Spy", async () => {
     //Arrange
     const m = new Mocks();
     axiosGetSpy = jest.spyOn(axios, 'get')

@@ -44,7 +44,8 @@
     ```
 
     >**-D** is short for --save-dev  
-    >**i** is short for install
+    >**i** is short for install  
+    >use **-g** if you want to install globally  
 
     Now Change test script in package.config to "jest"
 
@@ -56,7 +57,15 @@
     ...
     ```
 
-6. Create a function for simple logic to test
+6. If you want to group all tests into a test module all you have to do to is to wrap our test in a container function called *describe* which represent a test suite. it privides grouping and represent behavior-driven testing:
+
+    ```javascript
+    describe('Math functions', () => {
+
+    });
+    ```
+
+7. Create a function for simple logic to test
 
     Create new function.js file in the folder to write some logic to test
 
@@ -82,7 +91,7 @@
     module.exports = functions;
     ```
 
-7. Write unit test for the function we just wrote
+8. Write unit test for the function we just wrote
 
     Create new function.test.js file in the same folder to write the test for function.js
     > convention is to append *.test* for **jest** just like *.spec* for **jasmine**
@@ -101,6 +110,14 @@
     });
     ```
 
+    >**it** is an alias for **test** but since other JavaScript unit testing frameworks use **it** instead we will be using **it** not **test** so it becomes:
+
+    ```javascript
+    it('Add 2 + 2 equals 4', () => {
+        expect(functions.add(2,2)).toBe(4);
+    });
+    ```
+  
     Run our test using:
 
     ```console
@@ -109,10 +126,10 @@
 
     We see that the test runner finds our test and it passes.
 
-8. Now let's write another test for multiplication using TDD approach:
+9. Now let's write another test for multiplication using TDD approach:
 
     ```javascript
-    test('Multiply 2 * 4 equals 8', () => {
+    it('Multiply 2 * 4 equals 8', () => {
         expect(functions.multiply(2,4)).toBe(8);
     });
     ```
@@ -132,7 +149,7 @@
 
     if we run the test again it will pass
 
-9. **Optional:** If you want to use ES6 syntax and modules, you must install `Babel` library. you need to install babel by running:
+10. **Optional:** If you want to use ES6 syntax and modules, you must install `Babel` library. you need to install babel by running:
 
     ```console
     npm i -D @babel/core @babel/preset-env @babel/register

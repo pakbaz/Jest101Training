@@ -42,7 +42,7 @@
 3. First thing we can check is **"not"** modifier using fluent api. for example if we want to have another unit test for multiply function for what we don't expect it to be we can add following method:
 
     ```javascript
-    test('Multiply 2 * 4 does not equal 9', () => {
+    it('Multiply 2 * 4 does not equal 9', () => {
         expect(functions.multiply(2,4)).not.toBe(9);
     });
     ```
@@ -51,7 +51,7 @@
 
     ```javascript
     // toBeNull
-    test('isNull will be Null', () => {
+    it('isNull will be Null', () => {
         expect(functions.isNull()).toBeNull();
     });
     ```
@@ -59,7 +59,7 @@
 5. Falsy value can be also evaluated similarly:
 
     ```javascript
-    test('checkValue of undefined will be falsy', () => {
+    it('checkValue of undefined will be falsy', () => {
         expect(functions.checkValue(undefined)).toBeFalsy();
     });
     ```
@@ -68,7 +68,7 @@
 
     ```javascript
     //reference type vs. value type
-    test('createUser should return default user', () => {
+    it('createUser should return default user', () => {
         expect(functions.createUser()).toBe({
         firstName: 'Sepehr',
         lastName: 'Pakbaz'
@@ -83,7 +83,7 @@
 
     ```javascript
     //reference type vs. value type
-    test('createUser should return default user', () => {
+    it('createUser should return default user', () => {
         expect(functions.createUser()).toStrictEqual({
         firstName: 'Sepehr',
         lastName: 'Pakbaz'
@@ -95,7 +95,7 @@
 
     ```javascript
     // Less than and greater than
-    test('Should be under 1600', () => {
+    it('Should be under 1600', () => {
         const load1 = 800;
         const load2 = 800;
         expect(load1 + load2).toBeLessThanOrEqual(1600);
@@ -105,11 +105,11 @@
 8. For regular expression we can match part of a string or whole string with a pattern or characters and for that we use *"toMatch()"* method, we can also combine **"not"** modifier with it:
 
     ```javascript
-    test('there is no I in team', () => {
+    it('there is no I in team', () => {
         expect('team').not.toMatch(/I/);
     });
 
-    test('but there is a "stop" in Christoph', () => {
+    it('but there is a "stop" in Christoph', () => {
         expect('Christoph').toMatch(/stop/);
     });
     ```
@@ -118,7 +118,7 @@
 
     ```javascript
     // Arrays
-    test('Admin should be in usernames', () => {
+    it('Admin should be in usernames', () => {
         usernames = ['john', 'karen', 'admin'];
         expect(usernames).toContain('admin');
     });
@@ -136,7 +136,7 @@ for testing this function let's create a multi assertion unit test as below in f
 
 ```javascript
 //exception handling
-test('compiling android goes as expected', () => {
+it('compiling android goes as expected', () => {
     expect(functions.compileJavaCode).toThrow();
     expect(functions.compileJavaCode).toThrow(Error);
   

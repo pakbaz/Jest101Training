@@ -40,7 +40,7 @@
 
     ```javascript
     // Promise
-    test('fetchUser should return a user with the name of Leanne Graham', () => {
+    it('fetchUser should return a user with the name of Leanne Graham', () => {
     expect.assertions(1);
     return functions.fetchUser().then(data => {
         expect(data.name).toEqual('Leanne Graham');
@@ -54,7 +54,7 @@
 
     ```javascript
     // Async Await
-    test('fetchUser should return a user with the name of Leanne Graham', async () => {
+    it('fetchUser should return a user with the name of Leanne Graham', async () => {
         expect.assertions(1);
         const data = await functions.fetchUser();
         expect(data.name).toEqual('Leanne Graham');
@@ -74,8 +74,8 @@
         afterAll(() => console.log('afterAll'));
         beforeEach(() => console.log('beforeEach'));
         afterEach(() => console.log('afterEach'));
-        test('log test', () => console.log('test1'));
-        test('trivial bool check', () => {
+        it('log test', () => console.log('test1'));
+        it('trivial bool check', () => {
             console.log('test2')
             expect(true).toBe(true);
         });
@@ -93,7 +93,7 @@
     });
     ```
 
-    > note that using `.only` will not bypass before and after tests for the scope it belongs to but it will make all other tests from the same scope or other scopes in the same suite to be skipped 
+    > note that using `.only` will not bypass before and after tests for the scope it belongs to but it will make all other tests from the same scope or other scopes in the same suite to be skipped  
 
 ### Reference
 
