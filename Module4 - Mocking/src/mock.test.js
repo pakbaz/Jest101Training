@@ -2,7 +2,7 @@ import Mocks from './mock';
 import axios from 'axios';
 
 
-describe('Testing functions', () => {
+describe('Testing Mocks class', () => {
   let axiosGetSpy;
   let mockPost = 
     [{
@@ -12,7 +12,11 @@ describe('Testing functions', () => {
         body: 'fake'
       }
     ];
-  //stub example
+  beforeEach(()=> axiosGetSpy = jest.fn());
+  afterEach(() => {
+      axiosGetSpy.mockRestore();
+  });
+  //mock example
   it('greetWorld calls the greeting function properly', () => {
     //Arrange
     const m = new Mocks();
@@ -26,12 +30,9 @@ describe('Testing functions', () => {
     expect(mockFn).toHaveBeenCalledWith('world');
     expect(value).toBe('Hello, world!');
   });
-  beforeEach(()=> axiosGetSpy = jest.fn());
-  afterEach(() => {
-      axiosGetSpy.mockRestore();
-  });
+
   //Calls real API to fetch first post
-  it("getPostById should return post with the id of 1 when 1 is passed - real API", async () => {
+  it("getPostById should return post with the id of 1 when 1 is passed - API", async () => {
     //Arrange
     const m = new Mocks();
     //Act
@@ -47,6 +48,7 @@ describe('Testing functions', () => {
   it("getPostById should return post with the id of 1 when 1 is passed - Spy", async () => {
     //Arrange
     const m = new Mocks();
+    
     axiosGetSpy = jest.spyOn(axios, 'get')
       .mockImplementation(() => Promise.resolve({data: mockPost}));
     
