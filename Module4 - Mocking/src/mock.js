@@ -22,7 +22,7 @@ export default class Mocks {
         return response.data;
     }
     
-    async getPostsByUserId(userId) {
+    async getPostsCountByUserId(userId) {
         const response = 
             await axios.get("https://jsonplaceholder.typicode.com/posts",
             {
@@ -32,6 +32,7 @@ export default class Mocks {
 
             });
 
-        return response.data;
+        return response.data.length;
     }
+
 }

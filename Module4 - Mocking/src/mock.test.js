@@ -62,5 +62,20 @@ describe('Testing Mocks class', () => {
     expect(post[0].title).toBe("fake");
   });
 
-  //
+  //Uses Spy to stub an external API without creating fake
+  it("getPostsCountByUserId should return correct posts count", async () => {
+    //Arrange
+    const m = new Mocks();
+    
+    axiosGetSpy = jest.spyOn(axios, 'get')
+      .mockImplementation(() => Promise.resolve({data: new Array(5)}));
+    
+    //Act
+    const postsCount = await m.getPostsCountByUserId(1);
+
+    //Assert
+    expect.assertions(2);
+    expect(postsCount).not.toBeNull();
+    expect(postsCount).toBe(5);
+  });
 });

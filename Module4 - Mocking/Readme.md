@@ -91,7 +91,7 @@
         return response.data;
     }
 
-    async getPostsByUserId(userId) {
+    async getPostsCountByUserId(userId) {
         const response =
             await axios.get("https://jsonplaceholder.typicode.com/posts",
             {
@@ -101,7 +101,7 @@
 
             });
 
-        return response.data;
+        return response.data.length;
     }
     ```
 
@@ -165,6 +165,27 @@
     ```
 
     This is a powerful feature that let you substitude any external or internal dependency with a mock object to test different aspects in your code block
+
+6. Another way we can take advantage of this powerful feature is to create a stub for a result of an external API without using fake object. Add this to your test suite:
+
+    ```javascript
+    //Uses Spy to stub an external API without creating fake
+    it("getPostsCountByUserId should return correct posts count", async () => {
+        //Arrange
+        const m = new Mocks();
+
+        axiosGetSpy = jest.spyOn(axios, 'get')
+        .mockImplementation(() => Promise.resolve({data: new Array(5)}));
+
+        //Act
+        const postsCount = await m.getPostsCountByUserId(1);
+
+        //Assert
+        expect.assertions(2);
+        expect(postsCount).not.toBeNull();
+        expect(postsCount).toBe(5);
+    });
+    ```
 
 ### Reference
 
